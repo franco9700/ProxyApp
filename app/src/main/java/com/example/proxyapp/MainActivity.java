@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                                 String estado = jsonResponse.getString("estado");
                                 String municipio = jsonResponse.getString("municipio");
 
-                                Intent intent = new Intent(MainActivity.this, Asistente.class);
+                                Intent intent = new Intent(MainActivity.this, MenuLateral.class);
                                 intent.putExtra("nombre", nombre);
                                 intent.putExtra("num_control", num_control);
                                 intent.putExtra("email", email);

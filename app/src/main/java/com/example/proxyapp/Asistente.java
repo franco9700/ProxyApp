@@ -12,9 +12,9 @@ public class Asistente extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_asistente);
+        setContentView(R.layout.activity_menu_lateral);
 
-        tvnombre = findViewById(R.id.tv_nombre);
+        /*tvnombre = findViewById(R.id.tv_nombre);
         tvnum_control = findViewById(R.id.tv_num_control);
         tvemail = findViewById(R.id.tv_email);
         tvpassword = findViewById(R.id.tv_password);
@@ -43,6 +43,6 @@ public class Asistente extends AppCompatActivity {
         tvsemestre.setText(semestre);
         tvescuela.setText(escuela);
         tvestado.setText(estado);
-        tvmunicipio.setText(municipio);
+        tvmunicipio.setText(municipio);*/
     }
 }

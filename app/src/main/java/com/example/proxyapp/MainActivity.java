@@ -1,6 +1,7 @@
 package com.example.proxyapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,23 +57,18 @@ public class MainActivity extends AppCompatActivity {
 
                             if (success){
                                 String nombre = jsonResponse.getString("nombre");
-                                String num_control = jsonResponse.getString("num_control");
-                                String telefono = jsonResponse.getString("telefono");
-                                String escuela = jsonResponse.getString("escuela");
-                                String semestre = jsonResponse.getString("semestre");
-                                String estado = jsonResponse.getString("estado");
-                                String municipio = jsonResponse.getString("municipio");
+                                Integer id = jsonResponse.getInt("id");
+                                Integer abono = jsonResponse.getInt("abono");
+                                Integer precio = jsonResponse.getInt("precio");
+
+                                String tipo_usuario = jsonResponse.getString("tipo_usuario");
 
                                 Intent intent = new Intent(MainActivity.this, MenuLateral.class);
                                 intent.putExtra("nombre", nombre);
-                                intent.putExtra("num_control", num_control);
-                                intent.putExtra("email", email);
-                                intent.putExtra("password", password);
-                                intent.putExtra("telefono", telefono);
-                                intent.putExtra("escuela", escuela);
-                                intent.putExtra("semestre", semestre);
-                                intent.putExtra("estado", estado);
-                                intent.putExtra("municipio", municipio);
+                                intent.putExtra("id", id);
+                                intent.putExtra("abono", abono);
+                                intent.putExtra("precio", precio);
+                                intent.putExtra("tipo_usuario", tipo_usuario);
 
                                 MainActivity.this.startActivity(intent);
 
@@ -99,4 +95,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.proxyapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class MenuLateral extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,8 +42,7 @@ public class MenuLateral extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.contenedor, new AsistenteFragment()).commit();
+        setValues();
     }
 
     @Override
@@ -87,16 +88,54 @@ public class MenuLateral extends AppCompatActivity
         if (id == R.id.nav_contacto) {
             fragmentManager.beginTransaction().replace(R.id.contenedor, new ContactoFragment()).commit();
         } else if (id == R.id.nav_asistente) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor, new AsistenteFragment()).commit();
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            setValues();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void setValues(){
+        Intent intent = getIntent();
+        /*String nombre = intent.getStringExtra("nombre");
+        String num_control = intent.getStringExtra("num_control");
+        String email = intent.getStringExtra("email");
+        String password = intent.getStringExtra("password");
+        String telefono = intent.getStringExtra("telefono");
+        String escuela = intent.getStringExtra("escuela");
+        String semestre = intent.getStringExtra("semestre");
+        String estado = intent.getStringExtra("estado");
+        String municipio = intent.getStringExtra("municipio");*/
+
+        String nombre = intent.getStringExtra("nombre");
+        Integer id = intent.getIntExtra("id", 0);
+        Integer abono = intent.getIntExtra("abono", 0);
+        Integer precio = intent.getIntExtra("precio", 0);
+
+        String tipo_usuario = intent.getStringExtra("tipo_usuario");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("nombre", nombre);
+        bundle.putInt("abono", abono);
+        bundle.putInt("precio", precio);
+
+        if (tipo_usuario.equals("admin")){
+            AdminFragment adminFrag = new AdminFragment();
+            adminFrag.setArguments(bundle);
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.contenedor, adminFrag).commit();
+        }
+        else{
+
+            AsistenteFragment asistenteFrag = new AsistenteFragment();
+            asistenteFrag.setArguments(bundle);
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.contenedor, asistenteFrag).commit();
+        }
+
+
     }
 }

@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">ProxyApp</string>
-    <string name="title_activity_menu_lateral">ProxyApp</string>
+    <string name="title_activity_menu_lateral">Bienvenido</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Nombre de usuario</string>
+    <string name="nav_header_subtitle">correo.usuario@correo.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 

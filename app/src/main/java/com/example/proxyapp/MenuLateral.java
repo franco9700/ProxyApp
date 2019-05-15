@@ -26,14 +26,7 @@ public class MenuLateral extends AppCompatActivity
         setContentView(R.layout.activity_menu_lateral);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -53,13 +46,6 @@ public class MenuLateral extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_lateral, menu);
-        return true;
     }
 
     @Override
@@ -98,21 +84,11 @@ public class MenuLateral extends AppCompatActivity
 
     public void setValues(){
         Intent intent = getIntent();
-        /*String nombre = intent.getStringExtra("nombre");
-        String num_control = intent.getStringExtra("num_control");
-        String email = intent.getStringExtra("email");
-        String password = intent.getStringExtra("password");
-        String telefono = intent.getStringExtra("telefono");
-        String escuela = intent.getStringExtra("escuela");
-        String semestre = intent.getStringExtra("semestre");
-        String estado = intent.getStringExtra("estado");
-        String municipio = intent.getStringExtra("municipio");*/
 
         String nombre = intent.getStringExtra("nombre");
         Integer id = intent.getIntExtra("id", 0);
         Integer abono = intent.getIntExtra("abono", 0);
         Integer precio = intent.getIntExtra("precio", 0);
-
         String tipo_usuario = intent.getStringExtra("tipo_usuario");
 
         Bundle bundle = new Bundle();

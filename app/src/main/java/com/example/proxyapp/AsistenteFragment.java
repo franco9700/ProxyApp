@@ -2,14 +2,17 @@ package com.example.proxyapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Button;
 
 
 public class AsistenteFragment extends Fragment {
     TextView tvabono, tvdeuda;
+    Button btnelegir, btnmodificar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -17,8 +20,8 @@ public class AsistenteFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
 
-        Integer abono = bundle.getInt("abono");
-        Integer precio = bundle.getInt("precio");
+        Integer abono = bundle.getInt("abono", 0);
+        Integer precio = bundle.getInt("precio", 0);
 
         Integer deuda = precio - abono;
 
@@ -29,6 +32,17 @@ public class AsistenteFragment extends Fragment {
 
         tvabono.setText(String.valueOf(abono));
         tvdeuda.setText(String.valueOf(deuda));
+
+        btnelegir = v.findViewById(R.id.elegir);
+        btnmodificar = v.findViewById(R.id.modificar);
+
+        btnelegir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.contenedor, new elegirCarnetFragment()).commit();
+            }
+        });
 
         return v;
     }

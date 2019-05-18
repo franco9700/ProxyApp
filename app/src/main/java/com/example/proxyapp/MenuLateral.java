@@ -90,11 +90,16 @@ public class MenuLateral extends AppCompatActivity
         Integer abono = intent.getIntExtra("abono", 0);
         Integer precio = intent.getIntExtra("precio", 0);
         String tipo_usuario = intent.getStringExtra("tipo_usuario");
+        String email = intent.getStringExtra("email");
+        String password = intent.getStringExtra("password");
 
         Bundle bundle = new Bundle();
         bundle.putString("nombre", nombre);
+        bundle.putInt("id", id);
         bundle.putInt("abono", abono);
         bundle.putInt("precio", precio);
+        bundle.putString("email", email);
+        bundle.putString("password", password);
 
         if (tipo_usuario.equals("admin")){
             AdminFragment adminFrag = new AdminFragment();

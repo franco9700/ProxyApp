@@ -7,7 +7,6 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -28,10 +27,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class elegirCarnetFragment extends Fragment {
-    Spinner carnetSpinner;
-    ArrayList<String> nombres_carnets;
-    ArrayList<String> precios_carnets;
+
+public class modCarnetFragment extends Fragment{
+    Spinner tallaSpinner;
 
     Spinner visitaSpinner;
     ArrayList<String> visitas;
@@ -39,89 +37,39 @@ public class elegirCarnetFragment extends Fragment {
     Spinner tallerSpinner;
     ArrayList<String> talleres;
 
-    TextView tvtotal;
+    Button btn_mod;
 
-    Button btn_listo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         Bundle bundle = this.getArguments();
 
         final Integer id = bundle.getInt("id", 0);
         final String email = bundle.getString("email");
         final String password = bundle.getString("password");
 
-        View v = inflater.inflate(R.layout.fragment_elegir_carnet, container, false);
+        View v = inflater.inflate(R.layout.fragment_mod_carnet, container, false);
 
         visitas = new ArrayList<>();
-        visitaSpinner = v.findViewById(R.id.visita_spinner);
+        visitaSpinner = v.findViewById(R.id.visita_mod);
 
-        nombres_carnets = new ArrayList<>();
-        precios_carnets = new ArrayList<>();
-        carnetSpinner = v.findViewById(R.id.carnet_spinner);
+        tallaSpinner = v.findViewById(R.id.talla_mod);
 
         talleres = new ArrayList<>();
-        tallerSpinner = v.findViewById(R.id.taller_spinner);
+        tallerSpinner = v.findViewById(R.id.taller_mod);
 
-        tvtotal = v.findViewById(R.id.tv_total);
-
-        btn_listo = v.findViewById(R.id.btn_listo);
+        btn_mod = v.findViewById(R.id.btn_actualizar);
 
         listar_visitas();
-        listar_carnet();
         listar_talleres();
+        listar_tallas();
 
-        carnetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                final String carnet = carnetSpinner.getSelectedItem().toString();
-
-                RequestQueue requestQueue=Volley.newRequestQueue(getActivity().getApplicationContext());
-                StringRequest stringRequest=new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES+"Carnet.php",
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try{
-                                    JSONObject jsonObject=new JSONObject(response);
-                                    JSONArray jsonArray=jsonObject.getJSONArray("arreglo");
-                                    for(int i=0;i<jsonArray.length();i++){
-                                        JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                                        String nombre_carnet=jsonObject1.getString("nombre");
-                                        String precio_carnet=jsonObject1.getString("precio");
-
-                                        if (nombre_carnet.equals(carnet)){
-
-                                            tvtotal.setText("$"+precio_carnet);
-
-                                        }
-                                    }
-                                }catch (JSONException e){e.printStackTrace();}
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                    }
-                });
-                int socketTimeout = 30000;
-                RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-                stringRequest.setRetryPolicy(policy);
-                requestQueue.add(stringRequest);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        btn_listo.setOnClickListener(new View.OnClickListener() {
+        btn_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final String carnet = carnetSpinner.getSelectedItem().toString();
+                final String talla = tallaSpinner.getSelectedItem().toString();
                 final String visita = visitaSpinner.getSelectedItem().toString();
                 final String taller = tallerSpinner.getSelectedItem().toString();
 
@@ -180,7 +128,7 @@ public class elegirCarnetFragment extends Fragment {
                                 queue.add(loginRequest);
                             }else{
                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext());
-                                builder.setMessage("Error al registrar carnet: Intente de nuevo")
+                                builder.setMessage("Error al actualizar carnet: Intente de nuevo")
                                         .setNegativeButton("Ok", null)
                                         .create().show();
                             }
@@ -192,7 +140,7 @@ public class elegirCarnetFragment extends Fragment {
                     }
                 };
 
-                RegistrarCarnetRequest carnetRequest = new RegistrarCarnetRequest(id, carnet, visita, taller, respoListener);
+                ActualizarCarnetRequest carnetRequest = new ActualizarCarnetRequest(id, talla, visita, taller, respoListener);
 
                 RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
                 queue.add(carnetRequest);
@@ -200,39 +148,14 @@ public class elegirCarnetFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
         return v;
     }
 
-    public void listar_carnet(){
-        RequestQueue requestQueue=Volley.newRequestQueue(getActivity().getApplicationContext());
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, conexion.URL_WEB_SERVICES+"Carnet.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try{
-                            JSONObject jsonObject=new JSONObject(response);
-                            JSONArray jsonArray=jsonObject.getJSONArray("arreglo");
-                            for(int i=0;i<jsonArray.length();i++){
-                                JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                                String nombre_carnet=jsonObject1.getString("nombre");
-                                String precio_carnet=jsonObject1.getString("precio");
-                                nombres_carnets.add(nombre_carnet);
-                                precios_carnets.add(precio_carnet);
-                            }
-                            carnetSpinner.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, nombres_carnets));
-                        }catch (JSONException e){e.printStackTrace();}
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        int socketTimeout = 30000;
-        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-        stringRequest.setRetryPolicy(policy);
-        requestQueue.add(stringRequest);
+    public void listar_tallas(){
+
+        String[] tallas = {"S - Hombre","M - Hombre","G - Hombre","XG - Hombre", "S - Mujer","M - Mujer","G - Mujer","XG - Mujer"};
+        tallaSpinner.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, tallas));
+
     }
 
     public void listar_visitas(){

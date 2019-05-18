@@ -10,23 +10,42 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:text="Carnet"
-            android:layout_marginHorizontal="50dp"/>
+            android:layout_marginTop="50sp"
+            android:layout_marginHorizontal="50dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Carnet"
+                android:layout_weight="1"
+                android:gravity="left"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:text="Icono"/>
+
+        </LinearLayout>
 
         <Spinner
             android:id="@+id/carnet_spinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"/>
+            android:layout_marginHorizontal="50dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Visita"
-            android:layout_marginHorizontal="50dp"/>
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"/>
 
         <Spinner
             android:id="@+id/visita_spinner"
@@ -38,13 +57,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Taller"
-            android:layout_marginHorizontal="50dp"/>
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"/>
 
         <Spinner
             android:id="@+id/taller_spinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="1"
+                android:textSize="30sp"
+                android:text="Total:"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:text="$0.00"
+                android:id="@+id/tv_total"/>
+
+        </LinearLayout>
+
+        <Button style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"
+            android:text="Listo"
+            android:id="@+id/btn_listo"/>
+
 
     </LinearLayout>
 

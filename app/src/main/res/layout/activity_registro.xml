@@ -8,6 +8,8 @@
     tools:context=".Registro">
 
     <TextView
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registro"
@@ -16,6 +18,8 @@
         />
 
     <EditText
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre completo"
@@ -26,6 +30,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:hint="Numero de control o matricula"
         android:inputType="number"
         android:id="@+id/txt_num_control"
@@ -34,6 +39,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:hint="Correo electronico"
         android:inputType="textEmailAddress"
         android:id="@+id/txt_email"
@@ -42,6 +48,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:hint="Contraseña"
         android:inputType="textPassword"
         android:id="@+id/txt_password"
@@ -50,6 +57,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:hint="Teléfono"
         android:inputType="phone|number"
         android:id="@+id/txt_telefono"
@@ -58,6 +66,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:hint="Plantel/Escuela"
         android:inputType="text"
         android:id="@+id/txt_escuela"
@@ -66,6 +75,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:hint="Semestre"
         android:inputType="text"
         android:id="@+id/txt_semestre"
@@ -74,6 +84,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:hint="Estado"
         android:inputType="text"
         android:id="@+id/txt_estado"
@@ -82,14 +93,17 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
         android:hint="Municipio"
         android:inputType="text"
         android:id="@+id/txt_municipio"
         />
 
-    <Button
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="50dp"
         android:id="@+id/btn_registrar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrarse"
         android:layout_gravity="center"

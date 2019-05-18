@@ -18,10 +18,12 @@ public class AsistenteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Bundle bundle = this.getArguments();
+        final Bundle bundle = this.getArguments();
 
         Integer abono = bundle.getInt("abono", 0);
         Integer precio = bundle.getInt("precio", 0);
+        String email = bundle.getString("email");
+        String password = bundle.getString("password");
 
         Integer deuda = precio - abono;
 
@@ -39,8 +41,22 @@ public class AsistenteFragment extends Fragment {
         btnelegir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                elegirCarnetFragment elegirCarnetFrag = new elegirCarnetFragment();
+                elegirCarnetFrag.setArguments(bundle);
+
                 FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contenedor, new elegirCarnetFragment()).commit();
+                fragmentManager.beginTransaction().replace(R.id.contenedor, elegirCarnetFrag).commit();
+            }
+        });
+
+        btnmodificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modCarnetFragment modCarnetFrag = new modCarnetFragment();
+                modCarnetFrag.setArguments(bundle);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.contenedor, modCarnetFrag).commit();
             }
         });
 

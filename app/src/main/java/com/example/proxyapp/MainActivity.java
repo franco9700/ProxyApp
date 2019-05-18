@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     TextView tv_registrar;
-    Button btn_iniciar;
+    Button btn_iniciar, btn_registrar;
     EditText etemail;
     EditText etpassword;
 
@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv_registrar = findViewById(R.id.tv_reg);
+        btn_registrar = findViewById(R.id.btn_reg);
         btn_iniciar = findViewById(R.id.btn_iniciar);
         etemail = findViewById(R.id.email_login);
         etpassword = findViewById(R.id.password_login);
 
-        tv_registrar.setOnClickListener(new View.OnClickListener() {
+        btn_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentReg = new Intent(MainActivity.this, Registro.class);
@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                                 intent.putExtra("abono", abono);
                                 intent.putExtra("precio", precio);
                                 intent.putExtra("tipo_usuario", tipo_usuario);
+                                intent.putExtra("email", email);
+                                intent.putExtra("password", password);
 
                                 MainActivity.this.startActivity(intent);
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -73,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
                                 intent.putExtra("password", password);
 
                                 MainActivity.this.startActivity(intent);
+
+
+
+                                Toast toast1 =
+                                        Toast.makeText(getApplicationContext(),
+                                                "Bienvenido a ProxyApp", Toast.LENGTH_SHORT);
+
+                                toast1.show();
 
                             }else{
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);

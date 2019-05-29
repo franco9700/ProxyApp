@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".nuevaVisitaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nueva Visita"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:textSize="30sp"
+            android:layout_marginHorizontal="50dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre de Visita"
+            android:layout_weight="1"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="50dp"/>
+
+
+        <EditText
+            android:id="@+id/new_nombre_visita"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cupo"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"/>
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/cupo_visita"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"/>
+
+        <Button style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"
+            android:text="Guardar"
+            android:id="@+id/btn_guardar_visita"/>
+
+    </LinearLayout>
+
+</FrameLayout>

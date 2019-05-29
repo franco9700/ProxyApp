@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -159,6 +160,14 @@ public class elegirCarnetFragment extends Fragment {
                                                 intent.putExtra("password", password);
 
                                                 getActivity().getApplicationContext().startActivity(intent);
+
+
+
+                                                Toast toast1 =
+                                                        Toast.makeText(getContext(),
+                                                                "Carnet elegido con exito", Toast.LENGTH_SHORT);
+
+                                                toast1.show();
 
                                             }else{
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext());

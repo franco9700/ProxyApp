@@ -15,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MenuLateral extends AppCompatActivity
@@ -28,7 +29,26 @@ public class MenuLateral extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        Intent intent = getIntent();
+
+        String nombre = intent.getStringExtra("nombre");
+        String tipo_usuario = intent.getStringExtra("tipo_usuario");
+        String email = intent.getStringExtra("email");
+
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
+        TextView text_username = (TextView) header.findViewById(R.id.username);
+        TextView text_email = (TextView) header.findViewById(R.id.user_email);
+        ImageView img = (ImageView) findViewById(R.id.imageView);
+
+        /*if (tipo_usuario.equals("admin"))
+            img.setImageResource(R.drawable.admin);*/
+
+        text_username.setText(nombre);
+        text_email.setText(email);
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);

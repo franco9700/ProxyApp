@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -65,6 +66,12 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                     if (success){
                         Intent intent = new Intent(Registro.this, MainActivity.class);
                         Registro.this.startActivity(intent);
+
+                        Toast toast1 =
+                                Toast.makeText(getApplicationContext(),
+                                        "Usuario registrado con exito", Toast.LENGTH_SHORT);
+
+                        toast1.show();
                     }else{
                         AlertDialog.Builder builder = new AlertDialog.Builder(Registro.this);
                         builder.setMessage("Error al registrar usuario: Intente de nuevo")
